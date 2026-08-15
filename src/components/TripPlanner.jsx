@@ -1,8 +1,19 @@
 import { useState } from "react";
+import { useSearchParams } from "react-router-dom";
 
 function TripPlanner() {
+  const [searchParams] = useSearchParams();
+
+const destinationFromUrl = searchParams.get("destination");
+
+const [destination, setDestination] = useState(
+  destinationFromUrl
+    ? destinationFromUrl.charAt(0).toUpperCase() +
+        destinationFromUrl.slice(1)
+    : ""
+);
   const [destinationOpen, setDestinationOpen] = useState(false);
-  const [destination, setDestination] = useState("");
+  // const [destination, setDestination] = useState("");
   const [travellers, setTravellers] = useState(2);
   const [selectedInterests, setSelectedInterests] = useState([]);
   const [startDate, setStartDate] = useState("");

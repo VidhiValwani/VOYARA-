@@ -429,7 +429,7 @@ function DestinationDetails() {
             </div>
 
             <Link
-              to="/plan-trip"
+              to={`/plan-trip?destination=${slug}&interest=Nature`}
               className="shrink-0 rounded-full bg-white px-7 py-3.5 font-medium text-slate-800 transition hover:bg-green-100"
             >
               Plan this trip →
