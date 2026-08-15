@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 function Navbar() {
   return (
     <nav className="fixed top-0 left-0 z-50 w-full border-b border-white/20 bg-white/70 backdrop-blur-md">
@@ -22,9 +23,12 @@ function Navbar() {
             Experiences
           </a>
 
-          <a href="#" className="text-sm font-medium text-slate-700 transition hover:text-green-700">
-            Plan a Trip
-          </a>
+         <Link
+  to="/plan-trip"
+  className="text-sm font-medium text-slate-700 transition hover:text-green-700"
+>
+  Plan a Trip
+</Link>
 
           <a href="#" className="text-sm font-medium text-slate-700 transition hover:text-green-700">
             International
