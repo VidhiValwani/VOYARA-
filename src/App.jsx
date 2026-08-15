@@ -7,6 +7,7 @@ import ExploreByInterest from "./components/ExploreByInterest";
 import FeaturedExperience from "./components/FeaturedExperience";
 import PlanTrip from "./pages/PlanTrip";
 import DestinationDetails from "./pages/DestinationDetails";
+import DiscoverIndia from "./pages/DiscoverIndia";
 
 function Home() {
   return (
@@ -36,6 +37,11 @@ function App() {
     path="/destinations/:slug"
     element={<DestinationDetails />}
   />
+
+  <Route
+  path="/discover-india"
+  element={<DiscoverIndia />}
+/>
 </Routes>
     </BrowserRouter>
   );
