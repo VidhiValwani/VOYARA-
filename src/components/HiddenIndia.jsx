@@ -31,7 +31,7 @@ const destinations = [
 ]
 function HiddenIndia() {
   return (
-    <section className="bg-[#F7F9F6] px-6 py-24 lg:px-10 lg:py-32">
+    <section className="bg-[#F7F9F6] px-6 pt-16 pb-4 lg:px-10 lg:pt-20 lg:pb-6">
       
       {/* Section Heading */}
       <div className="mx-auto max-w-7xl">
