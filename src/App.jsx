@@ -25,17 +25,18 @@ function App() {
       <Navbar />
 
       <Routes>
-        {/* Homepage */}
-        <Route path="/" element={<Home />} />
+  {/* Homepage */}
+  <Route path="/" element={<Home />} />
 
-        {/* Trip Planner */}
-        <Route path="/plan-trip" element={<PlanTrip />} />
+  {/* Trip Planner */}
+  <Route path="/plan-trip" element={<PlanTrip />} />
 
-        <Route
-          path="/destinations/meghalaya"
-          element={<DestinationDetails />}
-        />
-      </Routes>
+  {/* Destination Details */}
+  <Route
+    path="/destinations/:slug"
+    element={<DestinationDetails />}
+  />
+</Routes>
     </BrowserRouter>
   );
 }

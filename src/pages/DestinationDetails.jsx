@@ -1,4 +1,214 @@
+import { Link, useParams } from "react-router-dom";
+
+import meghalaya from "../assets/images/destinations/meghalaya.jpg";
+import varanasi from "../assets/images/destinations/varanasi.jpg";
+import hampi from "../assets/images/destinations/hampi.jpg";
+import munsiyari from "../assets/images/destinations/munsiyari.jpg";
+
+import nature from "../assets/images/experiences/nature.jpg";
+import coastal from "../assets/images/experiences/coastal.jpg";
+import mountains from "../assets/images/experiences/mountains.jpg";
+import heritage from "../assets/images/experiences/heritage.jpg";
+import spiritual from "../assets/images/experiences/spiritual.jpg";
+
+const destinations = {
+  meghalaya: {
+    name: "Meghalaya",
+    region: "Northeast India",
+    tagline: "Where clouds meet the hills.",
+    description:
+      "Meghalaya is known for mist-covered hills, living root bridges, crystal-clear rivers and some of the most beautiful landscapes in Northeast India.",
+    descriptionTwo:
+      "From quiet villages to dramatic waterfalls, it is the kind of destination where slowing down becomes part of the journey.",
+    bestFor: "Nature · Adventure · Slow Travel",
+    duration: "5–7 days",
+    bestTime: "October – April",
+    image: meghalaya,
+    places: [
+      {
+        name: "Living Root Bridges",
+        image: nature,
+        text: "Walk through one of nature's most fascinating creations.",
+      },
+      {
+        name: "Dawki",
+        image: coastal,
+        text: "Discover crystal-clear waters surrounded by green hills.",
+      },
+      {
+        name: "Shillong",
+        image: mountains,
+        text: "Explore Meghalaya's lively hill capital and surrounding landscapes.",
+      },
+      {
+        name: "Nongriat",
+        image: nature,
+        text: "Discover a hidden village surrounded by forests and waterfalls.",
+      },
+    ],
+    experiences: [
+      "🌿 Trek through living root bridges",
+      "💧 Chase hidden waterfalls",
+      "🛶 Explore the Dawki river",
+      "🍛 Taste Khasi cuisine",
+    ],
+  },
+
+  varanasi: {
+    name: "Varanasi",
+    region: "Uttar Pradesh · North India",
+    tagline: "Where every morning feels timeless.",
+    description:
+      "Varanasi is a city of ancient ghats, sacred rituals, winding lanes and stories that have travelled through generations.",
+    descriptionTwo:
+      "From sunrise boat rides to evening Ganga Aarti, Varanasi offers an experience that is deeply connected to India's spiritual and cultural heritage.",
+    bestFor: "Spiritual · Culture · Heritage",
+    duration: "3–4 days",
+    bestTime: "October – March",
+    image: varanasi,
+    places: [
+      {
+        name: "Dashashwamedh Ghat",
+        image: spiritual,
+        text: "Experience the energy of one of Varanasi's most iconic ghats.",
+      },
+      {
+        name: "Ganga Aarti",
+        image: spiritual,
+        text: "Witness the evening ritual that lights up the riverfront.",
+      },
+      {
+        name: "Assi Ghat",
+        image: nature,
+        text: "Start your morning slowly beside the Ganga.",
+      },
+      {
+        name: "Old City",
+        image: heritage,
+        text: "Get lost in centuries-old lanes filled with colour, food and stories.",
+      },
+    ],
+    experiences: [
+      "🪔 Experience the Ganga Aarti",
+      "🚣 Take a sunrise boat ride",
+      "🥘 Explore local Banarasi food",
+      "🏛️ Walk through the old city",
+    ],
+  },
+
+  hampi: {
+    name: "Hampi",
+    region: "Karnataka · South India",
+    tagline: "Ruins that still tell their stories.",
+    description:
+      "Hampi is a remarkable landscape of ancient temples, enormous boulders and ruins from the once-powerful Vijayanagara Empire.",
+    descriptionTwo:
+      "The best way to experience Hampi is slowly — walking through ruins, watching the light change across the landscape and discovering details hidden around every corner.",
+    bestFor: "Heritage · History · Exploration",
+    duration: "3–4 days",
+    bestTime: "October – February",
+    image: hampi,
+    places: [
+      {
+        name: "Virupaksha Temple",
+        image: heritage,
+        text: "Explore one of Hampi's most important surviving temples.",
+      },
+      {
+        name: "Vittala Temple",
+        image: heritage,
+        text: "Discover the famous stone architecture and musical pillars.",
+      },
+      {
+        name: "Hampi Bazaar",
+        image: heritage,
+        text: "Walk through the historic marketplace near Virupaksha Temple.",
+      },
+      {
+        name: "Matanga Hill",
+        image: mountains,
+        text: "Climb up for sweeping views across Hampi's landscape.",
+      },
+    ],
+    experiences: [
+      "🏛️ Explore ancient ruins",
+      "🚲 Cycle through Hampi",
+      "🌅 Watch the sunset from Matanga Hill",
+      "📸 Discover hidden architectural details",
+    ],
+  },
+
+  munsiyari: {
+    name: "Munsiyari",
+    region: "Uttarakhand · North India",
+    tagline: "A quieter side of the Himalayas.",
+    description:
+      "Munsiyari is a peaceful Himalayan destination surrounded by mountain landscapes, forests and quiet valleys.",
+    descriptionTwo:
+      "Far from crowded tourist routes, Munsiyari is ideal for travellers looking for slower days, mountain walks and expansive Himalayan views.",
+    bestFor: "Mountains · Nature · Slow Travel",
+    duration: "4–6 days",
+    bestTime: "March – June · October – November",
+    image: munsiyari,
+    places: [
+      {
+        name: "Panchachuli Peaks",
+        image: mountains,
+        text: "Take in the dramatic views of the Panchachuli mountain range.",
+      },
+      {
+        name: "Khaliya Top",
+        image: mountains,
+        text: "Trek through alpine landscapes with spectacular mountain views.",
+      },
+      {
+        name: "Birthi Falls",
+        image: nature,
+        text: "Stop by this impressive waterfall surrounded by greenery.",
+      },
+      {
+        name: "Munsiyari Village",
+        image: nature,
+        text: "Slow down and experience the peaceful mountain settlement.",
+      },
+    ],
+    experiences: [
+      "🥾 Trek through Himalayan trails",
+      "🏔️ Watch the Panchachuli peaks",
+      "🌲 Explore quiet mountain forests",
+      "☕ Enjoy slow mornings in the hills",
+    ],
+  },
+};
+
 function DestinationDetails() {
+  const { slug } = useParams();
+
+  const destination = destinations[slug];
+
+  if (!destination) {
+    return (
+      <main className="flex min-h-screen items-center justify-center bg-[#F7F9F6] px-6">
+        <div className="text-center">
+          <p className="text-sm uppercase tracking-[0.25em] text-green-700">
+            Destination not found
+          </p>
+
+          <h1 className="mt-4 text-4xl font-semibold text-slate-800">
+            We couldn't find this place.
+          </h1>
+
+          <Link
+            to="/"
+            className="mt-7 inline-block rounded-full bg-slate-800 px-6 py-3 text-sm font-medium text-white transition hover:bg-green-700"
+          >
+            Back to Home
+          </Link>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-[#F7F9F6]">
 
@@ -6,28 +216,26 @@ function DestinationDetails() {
       <section className="relative h-[70vh] min-h-[520px] overflow-hidden">
 
         <img
-          src="/images/destinations/meghalaya/meghalaya.jpg"
-          alt="Meghalaya"
+          src={destination.image}
+          alt={destination.name}
           className="absolute inset-0 h-full w-full object-cover"
         />
 
         <div className="absolute inset-0 bg-slate-900/40" />
 
         <div className="relative z-10 mx-auto flex h-full max-w-7xl items-end px-6 pb-16 lg:px-10 lg:pb-20">
-
           <div className="max-w-3xl text-white">
 
             <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-white/70">
-              Northeast India
+              {destination.region}
             </p>
 
             <h1 className="text-6xl font-semibold tracking-tight md:text-8xl">
-              Meghalaya
+              {destination.name}
             </h1>
 
             <p className="mt-5 max-w-xl text-base leading-7 text-white/80 md:text-lg">
-              Where clouds meet the hills, waterfalls hide in forests,
-              and every road leads somewhere beautiful.
+              {destination.tagline}
             </p>
 
           </div>
@@ -39,28 +247,24 @@ function DestinationDetails() {
 
         <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[1.5fr_0.7fr]">
 
-          {/* About */}
           <div>
 
             <p className="text-sm font-medium uppercase tracking-[0.25em] text-green-700">
-              Discover Meghalaya
+              Discover {destination.name}
             </p>
 
             <h2 className="mt-4 text-4xl font-semibold leading-tight text-slate-800 md:text-5xl">
-              A place that feels
+              A place worth
               <br />
-              untouched.
+              slowing down for.
             </h2>
 
             <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600">
-              Meghalaya is known for its mist-covered hills, living root
-              bridges, crystal-clear rivers and some of the most beautiful
-              landscapes in Northeast India.
+              {destination.description}
             </p>
 
             <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
-              From quiet villages to dramatic waterfalls, it is the kind
-              of destination where slowing down becomes part of the journey.
+              {destination.descriptionTwo}
             </p>
 
           </div>
@@ -80,7 +284,7 @@ function DestinationDetails() {
                 </p>
 
                 <p className="mt-1 font-medium text-slate-800">
-                  Nature · Adventure · Slow Travel
+                  {destination.bestFor}
                 </p>
               </div>
 
@@ -90,7 +294,7 @@ function DestinationDetails() {
                 </p>
 
                 <p className="mt-1 font-medium text-slate-800">
-                  5–7 days
+                  {destination.duration}
                 </p>
               </div>
 
@@ -100,12 +304,11 @@ function DestinationDetails() {
                 </p>
 
                 <p className="mt-1 font-medium text-slate-800">
-                  October – April
+                  {destination.bestTime}
                 </p>
               </div>
 
             </div>
-
           </div>
 
         </div>
@@ -127,36 +330,14 @@ function DestinationDetails() {
             </h2>
 
             <p className="mt-5 text-base leading-7 text-slate-600">
-              These are the places that should be on every Meghalaya
-              traveller's list.
+              A few places to start exploring {destination.name}.
             </p>
 
           </div>
 
           <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
 
-            {[
-              {
-                name: "Living Root Bridges",
-                image: "/images/destinations/meghalaya/root-bridge.jpg",
-                text: "Walk through one of nature's most fascinating creations.",
-              },
-              {
-                name: "Dawki",
-                image: "/images/destinations/meghalaya/dawki.jpg",
-                text: "Crystal-clear waters surrounded by green hills.",
-              },
-              {
-                name: "Shillong",
-                image: "/images/destinations/meghalaya/shillong.jpg",
-                text: "The lively hill capital surrounded by misty landscapes.",
-              },
-              {
-                name: "Nongriat",
-                image: "/images/destinations/meghalaya/nongriat.jpg",
-                text: "A hidden village reached through a memorable trek.",
-              },
-            ].map((place) => (
+            {destination.places.map((place) => (
               <div
                 key={place.name}
                 className="group overflow-hidden rounded-[1.75rem] bg-[#F7F9F6]"
@@ -207,12 +388,7 @@ function DestinationDetails() {
 
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
 
-            {[
-              "🌿 Trek through living root bridges",
-              "💧 Chase hidden waterfalls",
-              "🛶 Explore the Dawki river",
-              "🍛 Taste Khasi cuisine",
-            ].map((experience) => (
+            {destination.experiences.map((experience) => (
               <div
                 key={experience}
                 className="rounded-2xl border border-slate-200 bg-white p-6 text-sm font-medium text-slate-700 transition hover:-translate-y-1 hover:border-green-700/30 hover:shadow-sm"
@@ -240,26 +416,28 @@ function DestinationDetails() {
               </p>
 
               <h2 className="mt-4 text-4xl font-semibold md:text-5xl">
-                Make Meghalaya
+                Make {destination.name}
                 <br />
                 your next story.
               </h2>
 
               <p className="mt-5 max-w-xl text-sm leading-6 text-white/60">
-                Build a trip around the places and experiences you
-                actually want to discover.
+                Build a trip around the places and experiences you actually
+                want to discover.
               </p>
 
             </div>
 
-            <button className="shrink-0 rounded-full bg-white px-7 py-3.5 font-medium text-slate-800 transition hover:bg-green-100">
+            <Link
+              to="/plan-trip"
+              className="shrink-0 rounded-full bg-white px-7 py-3.5 font-medium text-slate-800 transition hover:bg-green-100"
+            >
               Plan this trip →
-            </button>
+            </Link>
 
           </div>
 
         </div>
-
       </section>
 
     </main>

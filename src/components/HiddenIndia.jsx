@@ -2,28 +2,33 @@ import meghalaya from "../assets/images/destinations/meghalaya.jpg"
 import varanasi from "../assets/images/destinations/varanasi.jpg"
 import hampi from "../assets/images/destinations/hampi.jpg"
 import munsiyari from "../assets/images/destinations/munsiyari.jpg"
+import { Link } from "react-router-dom"
 
 const destinations = [
   {
     name: "Meghalaya",
+    slug: "meghalaya",
     type: "Hidden Nature",
     description: "Living root bridges, misty hills and crystal-clear rivers.",
     image: meghalaya,
   },
   {
     name: "Varanasi",
+    slug: "varanasi",
     type: "Spiritual Journey",
     description: "Ancient ghats, sacred rituals and timeless stories.",
     image: varanasi,
   },
   {
     name: "Hampi",
+    slug: "hampi",
     type: "Heritage & History",
     description: "Ruins, temples and stories carved into the landscape.",
     image: hampi,
   },
   {
     name: "Munsiyari",
+    slug: "munsiyari",
     type: "Mountain Escape",
     description: "Quiet Himalayan valleys far from the usual crowds.",
     image: munsiyari,
@@ -55,10 +60,11 @@ function HiddenIndia() {
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
 
           {destinations.map((destination) => (
-            <article
-              key={destination.name}
-              className="group overflow-hidden rounded-3xl bg-white shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-xl"
-            >
+  <Link
+    key={destination.name}
+    to={`/destinations/${destination.slug}`}
+    className="group block overflow-hidden rounded-3xl bg-white shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-xl"
+  >
 
               {/* Image */}
               <div className="relative h-[380px] overflow-hidden">
@@ -88,7 +94,7 @@ function HiddenIndia() {
 
               </div>
 
-            </article>
+</Link>
           ))}
 
         </div>
