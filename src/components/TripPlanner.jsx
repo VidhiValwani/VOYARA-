@@ -72,9 +72,9 @@ function TripPlanner() {
   ];
 
   return (
-    <div className="grid items-start gap-6 lg:grid-cols-[1.55fr_0.65fr]">
+    <div className="grid w-full min-w-0 items-start gap-6 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,0.65fr)]">
       {/* Planner Form */}
-      <div className="rounded-[2rem] border border-slate-200/70 bg-white p-6 shadow-[0_12px_40px_rgba(30,41,59,0.05)] md:p-9">
+      <div className="w-full min-w-0 rounded-[2rem] border border-slate-200/70 bg-white p-6 shadow-[0_12px_40px_rgba(30,41,59,0.05)] md:p-9">
         {/* Destination */}
         <div>
           <label className="text-sm font-medium text-slate-700">
@@ -269,7 +269,7 @@ function TripPlanner() {
       </div>
 
       {/* Feasibility Panel */}
-      <aside className="rounded-[2rem] bg-slate-800 p-7 text-white md:p-9">
+      <aside className="w-full min-w-0 rounded-[2rem] bg-slate-800 p-7 text-white md:p-9">
         <p className="text-xs uppercase tracking-[0.25em] text-white/50">
           Smart travel window
         </p>

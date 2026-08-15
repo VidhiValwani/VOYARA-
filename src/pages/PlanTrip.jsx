@@ -1,10 +1,10 @@
-import TripPlanner from "../components/TripPlanner"
+import TripPlanner from "../components/TripPlanner";
 
 function PlanTrip() {
   return (
-    <main className="min-h-screen bg-[#F7F9F6]">
-      <section className="px-6 pb-20 pt-32 lg:px-10 lg:pb-28 lg:pt-40">
-        <div className="mx-auto max-w-7xl">
+    <main className="min-h-screen w-full overflow-x-hidden bg-[#F7F9F6]">
+      <section className="w-full px-6 pb-20 pt-36 lg:px-10 lg:pb-28 lg:pt-44">
+        <div className="mx-auto w-full max-w-[1280px]">
 
           {/* Page Heading */}
           <div className="mb-12 max-w-3xl">
@@ -26,12 +26,14 @@ function PlanTrip() {
           </div>
 
           {/* Planner */}
-          <TripPlanner />
+          <div className="w-full min-w-0">
+            <TripPlanner />
+          </div>
 
         </div>
       </section>
     </main>
-  )
+  );
 }
 
-export default PlanTrip
+export default PlanTrip;

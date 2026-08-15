@@ -88,7 +88,7 @@ function Experiences() {
           {experiences.map((experience) => (
             <Link
               key={experience.name}
-              to="/plan-trip"
+              to={`/plan-trip?interest=${experience.name}`}
               className="group overflow-hidden rounded-[2rem] bg-white shadow-sm transition duration-500 hover:-translate-y-2 hover:shadow-xl"
             >
 
