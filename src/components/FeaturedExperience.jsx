@@ -1,4 +1,5 @@
-import meghalayaImage from "../assets/images/destinations/meghalaya.jpg"
+import { Link } from "react-router-dom";
+import meghalayaImage from "../assets/images/destinations/meghalaya.jpg";
 
 const featuredExperience = {
   name: "Meghalaya",
@@ -6,11 +7,7 @@ const featuredExperience = {
   description:
     "Discover living root bridges, misty hills, crystal-clear rivers and the quiet beauty of India's northeast.",
 
-  mustVisit: [
-    "Nongriat Living Root Bridge",
-    "Dawki River",
-    "Shillong",
-  ],
+  mustVisit: ["Nongriat Living Root Bridge", "Dawki River", "Shillong"],
 
   experiences: [
     "Trek through living root bridges",
@@ -19,13 +16,12 @@ const featuredExperience = {
   ],
 
   bestFor: ["Nature", "Adventure", "Hidden Gems"],
-}
+};
 
 function FeaturedExperience() {
   return (
     <section className="bg-[#EEF3F1] px-6 py-14 lg:px-10 lg:py-20">
       <div className="mx-auto max-w-7xl">
-
         {/* Section heading */}
         <div className="mb-8">
           <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-green-700">
@@ -41,7 +37,6 @@ function FeaturedExperience() {
 
         {/* Main content */}
         <div className="grid overflow-hidden rounded-[2rem] bg-white shadow-sm lg:grid-cols-2">
-
           {/* Image */}
           <div className="relative min-h-[320px] lg:min-h-[500px]">
             <img
@@ -65,7 +60,6 @@ function FeaturedExperience() {
 
           {/* Information */}
           <div className="flex flex-col justify-center p-7 md:p-10 lg:p-12">
-
             <p className="text-2xl font-medium leading-relaxed text-slate-800 md:text-3xl">
               {featuredExperience.tagline}
             </p>
@@ -76,7 +70,6 @@ function FeaturedExperience() {
 
             {/* Must Visit */}
             <div className="mt-10 border-t border-slate-200 pt-8">
-
               <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
                 Must Visit
               </h4>
@@ -87,40 +80,31 @@ function FeaturedExperience() {
                     key={place}
                     className="flex items-center gap-4 text-slate-700"
                   >
-                    <span className="text-sm text-slate-400">
-                      0{index + 1}
-                    </span>
+                    <span className="text-sm text-slate-400">0{index + 1}</span>
 
                     <span>{place}</span>
                   </div>
                 ))}
               </div>
-
             </div>
 
             {/* Experiences */}
             <div className="mt-8 border-t border-slate-200 pt-8">
-
               <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
                 Experience
               </h4>
 
               <div className="mt-5 space-y-3">
                 {featuredExperience.experiences.map((experience) => (
-                  <p
-                    key={experience}
-                    className="text-slate-700"
-                  >
+                  <p key={experience} className="text-slate-700">
                     {experience}
                   </p>
                 ))}
               </div>
-
             </div>
 
             {/* Best for */}
             <div className="mt-8 border-t border-slate-200 pt-8">
-
               <h4 className="text-sm font-semibold uppercase tracking-[0.2em] text-slate-400">
                 Best for
               </h4>
@@ -135,20 +119,20 @@ function FeaturedExperience() {
                   </span>
                 ))}
               </div>
-
             </div>
 
             {/* CTA */}
-            <button className="mt-10 w-fit rounded-full bg-slate-800 px-7 py-3 font-medium text-white transition hover:bg-green-700">
-              Explore Meghalaya →
-            </button>
-
+<Link
+  to="/destinations/meghalaya"
+  className="mt-5 inline-flex shrink-0 rounded-full bg-slate-800 px-7 py-3.5 font-medium text-white transition hover:bg-slate-700"
+>
+  Explore Meghalaya →
+</Link>
           </div>
-
         </div>
       </div>
     </section>
-  )
+  );
 }
 
-export default FeaturedExperience
+export default FeaturedExperience;

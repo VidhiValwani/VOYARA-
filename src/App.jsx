@@ -9,6 +9,8 @@ import PlanTrip from "./pages/PlanTrip";
 import DestinationDetails from "./pages/DestinationDetails";
 import DiscoverIndia from "./pages/DiscoverIndia";
 import Experiences from "./pages/Experiences";
+import About from "./pages/About";
+import International from "./pages/International";
 
 function Home() {
   return (
@@ -47,6 +49,14 @@ function App() {
  <Route
   path="/experiences"
   element={<Experiences />}
+/>
+<Route
+  path="/about"
+  element={<About />}
+/>
+<Route
+  path="/international"
+  element={<International />}
 />
 </Routes>
     </BrowserRouter>
