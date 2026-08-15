@@ -1,9 +1,26 @@
 @import "tailwindcss";
 
+:root {
+  /* VOYARA — Light Mode / Palette 5 */
+  --voyara-bg: #F7F9F6;
+  --voyara-blue: #D9E6F2;
+  --voyara-sage: #A8C5B0;
+  --voyara-olive: #6B8E60;
+  --voyara-deep: #3E4D3A;
+  --voyara-gold: #C7A76A;
+
+  /* Text */
+  --voyara-text: #3E4D3A;
+  --voyara-muted: #6B8E60;
+  --voyara-border: #A8C5B0;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  background: var(--voyara-bg);
+  color: var(--voyara-text);
 }

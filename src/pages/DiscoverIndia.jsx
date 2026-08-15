@@ -129,15 +129,15 @@ function DiscoverIndia() {
 
         <div className="max-w-3xl">
 
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-green-700">
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#6B8E60]">
             Explore beyond the obvious
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold leading-tight text-slate-800 md:text-7xl">
+          <h1 className="mt-4 text-5xl font-semibold leading-tight text-[#3E4D3A] md:text-7xl">
             Discover India.
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-7 text-[#6B8E60] md:text-lg">
             Find places that match the way you want to travel — from
             quiet Himalayan escapes to ancient cities and spiritual journeys.
           </p>
@@ -149,12 +149,12 @@ function DiscoverIndia() {
       {/* Filters */}
       <section className="mx-auto mt-14 max-w-7xl">
 
-        <div className="rounded-[2rem] border border-slate-200/70 bg-white p-6 shadow-[0_12px_40px_rgba(30,41,59,0.04)]">
+        <div className="rounded-[2rem] border border-[#A8C5B0]/70 bg-white p-6 shadow-[0_12px_40px_rgba(62,77,58,0.04)]">
 
           {/* Region */}
           <div>
 
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#6B8E60]">
               Region
             </p>
 
@@ -167,8 +167,8 @@ function DiscoverIndia() {
                   onClick={() => setSelectedRegion(region)}
                   className={`rounded-full border px-4 py-2 text-sm transition ${
                     selectedRegion === region
-                      ? "border-green-700 bg-green-700 text-white"
-                      : "border-slate-300 text-slate-600 hover:border-green-700 hover:text-green-700"
+                      ? "border-[#6B8E60] bg-[#6B8E60] text-white"
+                      : "border-[#A8C5B0] text-[#3E4D3A] hover:border-[#6B8E60] hover:text-[#6B8E60]"
                   }`}
                 >
                   {region}
@@ -180,9 +180,9 @@ function DiscoverIndia() {
           </div>
 
           {/* Travel Style */}
-          <div className="mt-7 border-t border-slate-100 pt-7">
+          <div className="mt-7 border-t border-[#A8C5B0]/40 pt-7">
 
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#6B8E60]">
               Travel style
             </p>
 
@@ -195,8 +195,8 @@ function DiscoverIndia() {
                   onClick={() => setSelectedType(type)}
                   className={`rounded-full border px-4 py-2 text-sm transition ${
                     selectedType === type
-                      ? "border-slate-800 bg-slate-800 text-white"
-                      : "border-slate-300 text-slate-600 hover:border-slate-800 hover:text-slate-800"
+                      ? "border-[#3E4D3A] bg-[#3E4D3A] text-white"
+                      : "border-[#A8C5B0] text-[#3E4D3A] hover:border-[#6B8E60] hover:text-[#6B8E60]"
                   }`}
                 >
                   {type}
@@ -208,9 +208,9 @@ function DiscoverIndia() {
           </div>
 
           {/* Duration */}
-          <div className="mt-7 border-t border-slate-100 pt-7">
+          <div className="mt-7 border-t border-[#A8C5B0]/40 pt-7">
 
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-400">
+            <p className="text-xs font-medium uppercase tracking-[0.2em] text-[#6B8E60]">
               Trip duration
             </p>
 
@@ -223,8 +223,8 @@ function DiscoverIndia() {
                   onClick={() => setSelectedDuration(duration)}
                   className={`rounded-full border px-4 py-2 text-sm transition ${
                     selectedDuration === duration
-                      ? "border-slate-800 bg-slate-800 text-white"
-                      : "border-slate-300 text-slate-600 hover:border-slate-800 hover:text-slate-800"
+                      ? "border-[#3E4D3A] bg-[#3E4D3A] text-white"
+                      : "border-[#A8C5B0] text-[#3E4D3A] hover:border-[#6B8E60] hover:text-[#6B8E60]"
                   }`}
                 >
                   {duration}
@@ -237,26 +237,26 @@ function DiscoverIndia() {
 
           {/* Active Filters */}
           {hasActiveFilter && (
-            <div className="mt-7 flex flex-wrap items-center gap-3 border-t border-slate-100 pt-6">
+            <div className="mt-7 flex flex-wrap items-center gap-3 border-t border-[#A8C5B0]/40 pt-6">
 
-              <span className="text-xs text-slate-400">
+              <span className="text-xs text-[#6B8E60]">
                 Active filters:
               </span>
 
               {selectedRegion !== "All" && (
-                <span className="rounded-full bg-green-50 px-3 py-1 text-xs text-green-700">
+                <span className="rounded-full bg-[#A8C5B0]/30 px-3 py-1 text-xs text-[#3E4D3A]">
                   {selectedRegion}
                 </span>
               )}
 
               {selectedType !== "All" && (
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-700">
+                <span className="rounded-full bg-[#D9E6F2] px-3 py-1 text-xs text-[#3E4D3A]">
                   {selectedType}
                 </span>
               )}
 
               {selectedDuration !== "All" && (
-                <span className="rounded-full bg-slate-100 px-3 py-1 text-xs text-slate-700">
+                <span className="rounded-full bg-[#D9E6F2] px-3 py-1 text-xs text-[#3E4D3A]">
                   {selectedDuration}
                 </span>
               )}
@@ -264,7 +264,7 @@ function DiscoverIndia() {
               <button
                 type="button"
                 onClick={clearFilters}
-                className="ml-auto text-xs font-medium text-green-700 hover:text-green-800"
+                className="ml-auto text-xs font-medium text-[#6B8E60] hover:text-[#3E4D3A]"
               >
                 Clear all
               </button>
@@ -283,17 +283,17 @@ function DiscoverIndia() {
 
           <div>
 
-            <p className="text-sm text-slate-400">
+            <p className="text-sm text-[#6B8E60]">
               Explore curated destinations
             </p>
 
-            <h2 className="mt-2 text-3xl font-semibold text-slate-800">
+            <h2 className="mt-2 text-3xl font-semibold text-[#3E4D3A]">
               Places to begin with
             </h2>
 
           </div>
 
-          <p className="hidden text-sm text-slate-400 sm:block">
+          <p className="hidden text-sm text-[#6B8E60] sm:block">
             {filteredDestinations.length}{" "}
             {filteredDestinations.length === 1
               ? "destination"
@@ -322,11 +322,11 @@ function DiscoverIndia() {
                     className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                   />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#3E4D3A]/80 via-[#3E4D3A]/10 to-transparent" />
 
                   <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
 
-                    <p className="text-xs uppercase tracking-[0.2em] text-white/60">
+                    <p className="text-xs uppercase tracking-[0.2em] text-[#D9E6F2]/80">
                       {destination.region} · {destination.type}
                     </p>
 
@@ -338,7 +338,7 @@ function DiscoverIndia() {
                       {destination.description}
                     </p>
 
-                    <p className="mt-4 text-xs text-white/60">
+                    <p className="mt-4 text-xs text-[#D9E6F2]/80">
                       Ideal duration · {destination.duration} days
                     </p>
 
@@ -356,18 +356,18 @@ function DiscoverIndia() {
 
           <div className="rounded-[2rem] bg-white px-6 py-20 text-center">
 
-            <p className="text-lg font-medium text-slate-700">
+            <p className="text-lg font-medium text-[#3E4D3A]">
               No destinations found.
             </p>
 
-            <p className="mt-2 text-sm text-slate-400">
+            <p className="mt-2 text-sm text-[#6B8E60]">
               Try changing your filters.
             </p>
 
             <button
               type="button"
               onClick={clearFilters}
-              className="mt-6 rounded-full bg-slate-800 px-6 py-3 text-sm font-medium text-white transition hover:bg-green-700"
+              className="mt-6 rounded-full bg-[#3E4D3A] px-6 py-3 text-sm font-medium text-white transition hover:bg-[#6B8E60]"
             >
               Clear filters
             </button>

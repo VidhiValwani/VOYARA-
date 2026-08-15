@@ -10,14 +10,14 @@ function Hero() {
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/35"></div>
+      <div className="absolute inset-0 bg-[#3E4D3A]/45"></div>
 
       {/* Content */}
       <div className="relative z-10 mx-auto flex min-h-[calc(100vh-80px)] max-w-7xl items-center px-6 lg:px-10">
 
         <div className="max-w-2xl text-white">
 
-          <p className="mb-5 text-sm font-medium uppercase tracking-[0.3em] text-white/80">
+          <p className="mb-5 text-sm font-medium uppercase tracking-[0.3em] text-[#D9E6F2]">
             Discover India
           </p>
 
@@ -35,11 +35,15 @@ function Hero() {
           {/* Buttons */}
           <div className="mt-8 flex flex-wrap gap-4">
 
-            <button className="rounded-full bg-white px-7 py-3.5 font-medium text-slate-900 transition hover:bg-slate-100">
+            <button
+              className="rounded-full bg-[#F7F9F6] px-7 py-3.5 font-medium text-[#3E4D3A] transition hover:bg-[#D9E6F2]"
+            >
               Explore India
             </button>
 
-            <button className="rounded-full border border-white/60 bg-white/10 px-7 py-3.5 font-medium text-white backdrop-blur-sm transition hover:bg-white/20">
+            <button
+              className="rounded-full border border-[#A8C5B0]/70 bg-[#3E4D3A]/30 px-7 py-3.5 font-medium text-white backdrop-blur-sm transition hover:bg-[#6B8E60]/60"
+            >
               Plan Your Journey
             </button>
 
@@ -51,26 +55,30 @@ function Hero() {
 
       {/* Bottom Destination Label */}
       <div className="absolute bottom-8 left-6 z-10 text-white lg:left-10">
-        <p className="text-xs uppercase tracking-[0.25em] text-white/60">
+
+        <p className="text-xs uppercase tracking-[0.25em] text-[#D9E6F2]/80">
           Featured Destination
         </p>
 
         <p className="mt-1 text-lg font-medium">
           Himachal Pradesh
         </p>
+
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 right-6 z-10 hidden items-center gap-3 text-white/70 md:flex lg:right-10">
+      <div className="absolute bottom-8 right-6 z-10 hidden items-center gap-3 text-[#D9E6F2]/80 md:flex lg:right-10">
+
         <span className="text-xs uppercase tracking-[0.2em]">
           Scroll to explore
         </span>
 
-        <div className="h-10 w-px bg-white/50"></div>
+        <div className="h-10 w-px bg-[#A8C5B0]/70"></div>
+
       </div>
 
     </section>
-  )
+  );
 }
 
-export default Hero
+export default Hero;

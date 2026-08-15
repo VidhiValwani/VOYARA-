@@ -6,17 +6,17 @@ function International() {
       <section className="px-6 pb-20 pt-36 lg:px-10 lg:pb-28 lg:pt-44">
         <div className="mx-auto max-w-7xl">
 
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-green-700">
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#6B8E60]">
             Beyond India
           </p>
 
-          <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-tight text-slate-800 md:text-7xl">
+          <h1 className="mt-5 max-w-4xl text-5xl font-semibold leading-tight text-[#3E4D3A] md:text-7xl">
             The world is
             <br />
             waiting.
           </h1>
 
-          <p className="mt-7 max-w-2xl text-base leading-8 text-slate-600 md:text-lg">
+          <p className="mt-7 max-w-2xl text-base leading-8 text-[#6B8E60] md:text-lg">
             Discover international destinations, cultures and experiences
             worth travelling for — all at your own pace.
           </p>
@@ -28,9 +28,9 @@ function International() {
       <section className="bg-white px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-7xl">
 
-          <div className="rounded-[2.5rem] bg-slate-800 px-7 py-14 text-white md:px-12 md:py-20">
+          <div className="rounded-[2.5rem] bg-[#3E4D3A] px-7 py-14 text-white md:px-12 md:py-20">
 
-            <p className="text-xs uppercase tracking-[0.25em] text-white/50">
+            <p className="text-xs uppercase tracking-[0.25em] text-[#D9E6F2]/70">
               Coming soon
             </p>
 
@@ -40,7 +40,7 @@ function International() {
               coming to VOYARA.
             </h2>
 
-            <p className="mt-6 max-w-2xl text-sm leading-7 text-white/60 md:text-base">
+            <p className="mt-6 max-w-2xl text-sm leading-7 text-[#F7F9F6]/75 md:text-base">
               We're working on a curated collection of international
               destinations and experiences. Soon you'll be able to discover
               and plan journeys beyond India with VOYARA.
@@ -55,53 +55,59 @@ function International() {
       <section className="px-6 py-20 lg:px-10 lg:py-28">
         <div className="mx-auto max-w-7xl">
 
-          <p className="text-sm font-medium uppercase tracking-[0.25em] text-green-700">
+          <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#6B8E60]">
             What's coming
           </p>
 
-          <h2 className="mt-4 text-4xl font-semibold text-slate-800 md:text-5xl">
+          <h2 className="mt-4 text-4xl font-semibold text-[#3E4D3A] md:text-5xl">
             A world of possibilities.
           </h2>
 
           <div className="mt-12 grid gap-6 md:grid-cols-3">
 
             <div className="rounded-[2rem] bg-white p-8 shadow-sm">
+
               <p className="text-2xl">🌏</p>
 
-              <h3 className="mt-6 text-xl font-semibold text-slate-800">
+              <h3 className="mt-6 text-xl font-semibold text-[#3E4D3A]">
                 Global destinations
               </h3>
 
-              <p className="mt-3 text-sm leading-6 text-slate-600">
+              <p className="mt-3 text-sm leading-6 text-[#6B8E60]">
                 Explore carefully selected places across different parts of
                 the world.
               </p>
+
             </div>
 
             <div className="rounded-[2rem] bg-white p-8 shadow-sm">
+
               <p className="text-2xl">🗺️</p>
 
-              <h3 className="mt-6 text-xl font-semibold text-slate-800">
+              <h3 className="mt-6 text-xl font-semibold text-[#3E4D3A]">
                 Thoughtful itineraries
               </h3>
 
-              <p className="mt-3 text-sm leading-6 text-slate-600">
+              <p className="mt-3 text-sm leading-6 text-[#6B8E60]">
                 Build international trips around your interests, time and
                 budget.
               </p>
+
             </div>
 
             <div className="rounded-[2rem] bg-white p-8 shadow-sm">
+
               <p className="text-2xl">✈️</p>
 
-              <h3 className="mt-6 text-xl font-semibold text-slate-800">
+              <h3 className="mt-6 text-xl font-semibold text-[#3E4D3A]">
                 Travel your way
               </h3>
 
-              <p className="mt-3 text-sm leading-6 text-slate-600">
+              <p className="mt-3 text-sm leading-6 text-[#6B8E60]">
                 From quick escapes to longer journeys, make every trip feel
                 personal.
               </p>
+
             </div>
 
           </div>

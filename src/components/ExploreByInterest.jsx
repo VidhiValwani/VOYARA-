@@ -1,73 +1,84 @@
-import mountainsImage from "../assets/images/experiences/mountains.jpg"
-import spiritualImage from "../assets/images/experiences/spiritual.jpg"
-import natureImage from "../assets/images/experiences/nature.jpg"
-import heritageImage from "../assets/images/experiences/heritage.jpg"
-import coastalImage from "../assets/images/experiences/coastal.jpg"
-import wildlifeImage from "../assets/images/experiences/wildlife.jpg"
+import { Link } from "react-router-dom";
+
+import mountainsImage from "../assets/images/experiences/mountains.jpg";
+import spiritualImage from "../assets/images/experiences/spiritual.jpg";
+import natureImage from "../assets/images/experiences/nature.jpg";
+import heritageImage from "../assets/images/experiences/heritage.jpg";
+import coastalImage from "../assets/images/experiences/coastal.jpg";
+import wildlifeImage from "../assets/images/experiences/wildlife.jpg";
 
 const interests = [
   {
     title: "Mountains",
     description: "Escape to quiet valleys and dramatic peaks.",
-    image:mountainsImage,
+    image: mountainsImage,
+    interest: "Nature",
   },
   {
     title: "Spiritual Journeys",
     description: "Find stillness in India's sacred places.",
-    image:spiritualImage,
+    image: spiritualImage,
+    interest: "Spiritual",
   },
   {
     title: "Hidden Nature",
     description: "Discover forests, rivers and places off the usual trail.",
-    image:natureImage,
+    image: natureImage,
+    interest: "Nature",
   },
   {
     title: "Heritage & History",
     description: "Walk through centuries of stories and architecture.",
-    image:heritageImage,
+    image: heritageImage,
+    interest: "Heritage",
   },
   {
     title: "Coastal Escapes",
     description: "Slow down beside India's beautiful coastline.",
-    image:coastalImage,
+    image: coastalImage,
+    interest: "Beach",
   },
   {
     title: "Wildlife",
     description: "Step into the wild and meet India's incredible biodiversity.",
-    image:wildlifeImage,
+    image: wildlifeImage,
+    interest: "Wildlife",
   },
-]
+];
 
 function ExploreByInterest() {
   return (
-    <section className="bg-[#F7F9F6] px-6 pt-10 pb-12 lg:px-10 lg:pt-16 lg:pb-16">
+    <section className="bg-[#F7F9F6] px-6 pb-12 pt-10 lg:px-10 lg:pb-16 lg:pt-16">
       <div className="mx-auto max-w-7xl">
 
         {/* Heading */}
         <div className="mb-14 max-w-3xl">
-          <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-green-700">
+
+          <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-[#6B8E60]">
             Find your kind of journey
           </p>
 
-          <h2 className="text-4xl font-semibold leading-tight text-slate-800 md:text-6xl">
+          <h2 className="text-4xl font-semibold leading-tight text-[#3E4D3A] md:text-6xl">
             What brings
             <br />
             you here?
           </h2>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-7 text-[#6B8E60] md:text-lg">
             Whether you seek adventure, stillness, nature or history,
             discover destinations that match the way you want to travel.
           </p>
+
         </div>
 
         {/* Interest Grid */}
         <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
 
           {interests.map((interest) => (
-            <button
+            <Link
               key={interest.title}
-              className="group relative h-[360px] overflow-hidden rounded-[2rem] text-left"
+              to={`/plan-trip?interest=${interest.interest}`}
+              className="group relative block h-[360px] overflow-hidden rounded-[2rem] text-left"
             >
 
               {/* Image */}
@@ -78,7 +89,7 @@ function ExploreByInterest() {
               />
 
               {/* Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/20 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#3E4D3A]/85 via-[#3E4D3A]/20 to-transparent" />
 
               {/* Content */}
               <div className="absolute inset-x-0 bottom-0 p-7 text-white">
@@ -91,8 +102,9 @@ function ExploreByInterest() {
                   {interest.description}
                 </p>
 
-                <div className="mt-5 flex items-center gap-2 text-sm font-medium">
+                <div className="mt-5 flex items-center gap-2 text-sm font-medium text-[#D9E6F2]">
                   Explore
+
                   <span className="transition duration-300 group-hover:translate-x-2">
                     →
                   </span>
@@ -100,14 +112,14 @@ function ExploreByInterest() {
 
               </div>
 
-            </button>
+            </Link>
           ))}
 
         </div>
 
       </div>
     </section>
-  )
+  );
 }
 
-export default ExploreByInterest
+export default ExploreByInterest;

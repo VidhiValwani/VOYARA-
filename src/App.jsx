@@ -11,6 +11,8 @@ import DiscoverIndia from "./pages/DiscoverIndia";
 import Experiences from "./pages/Experiences";
 import About from "./pages/About";
 import International from "./pages/International";
+import Login from "./pages/Login";
+import SignUp from "./pages/SignUp";
 
 function Home() {
   return (
@@ -57,6 +59,14 @@ function App() {
 <Route
   path="/international"
   element={<International />}
+/>
+<Route
+  path="/login"
+  element={<Login />}
+/>
+<Route
+  path="/signup"
+  element={<SignUp />}
 />
 </Routes>
     </BrowserRouter>

@@ -61,17 +61,17 @@ function Experiences() {
 
         <div className="max-w-3xl">
 
-          <p className="text-sm font-medium uppercase tracking-[0.3em] text-green-700">
+          <p className="text-sm font-medium uppercase tracking-[0.3em] text-[#6B8E60]">
             Travel differently
           </p>
 
-          <h1 className="mt-4 text-5xl font-semibold leading-tight text-slate-800 md:text-7xl">
+          <h1 className="mt-4 text-5xl font-semibold leading-tight text-[#3E4D3A] md:text-7xl">
             Experiences
             <br />
             worth travelling for.
           </h1>
 
-          <p className="mt-6 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
+          <p className="mt-6 max-w-2xl text-base leading-7 text-[#6B8E60] md:text-lg">
             Choose how you want to experience India — from quiet mountain
             mornings to ancient streets, wild forests and coastal escapes.
           </p>
@@ -101,11 +101,11 @@ function Experiences() {
                   className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
                 />
 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#3E4D3A]/80 via-[#3E4D3A]/10 to-transparent" />
 
                 <div className="absolute bottom-0 left-0 right-0 p-7 text-white">
 
-                  <p className="text-xs uppercase tracking-[0.25em] text-white/60">
+                  <p className="text-xs uppercase tracking-[0.25em] text-[#D9E6F2]/80">
                     Experience
                   </p>
 
@@ -120,7 +120,7 @@ function Experiences() {
               {/* Content */}
               <div className="p-7">
 
-                <p className="text-sm leading-6 text-slate-600">
+                <p className="text-sm leading-6 text-[#6B8E60]">
                   {experience.description}
                 </p>
 
@@ -129,7 +129,7 @@ function Experiences() {
                   {experience.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="rounded-full bg-[#F7F9F6] px-3 py-1.5 text-xs text-slate-600"
+                      className="rounded-full bg-[#F7F9F6] px-3 py-1.5 text-xs text-[#3E4D3A]"
                     >
                       {tag}
                     </span>
@@ -139,11 +139,11 @@ function Experiences() {
 
                 <div className="mt-7 flex items-center justify-between">
 
-                  <span className="text-sm font-medium text-slate-700">
+                  <span className="text-sm font-medium text-[#3E4D3A]">
                     Plan around this
                   </span>
 
-                  <span className="text-lg text-green-700 transition group-hover:translate-x-1">
+                  <span className="text-lg text-[#6B8E60] transition group-hover:translate-x-1">
                     →
                   </span>
 
@@ -161,9 +161,9 @@ function Experiences() {
       {/* Bottom CTA */}
       <section className="mx-auto mt-16 max-w-7xl">
 
-        <div className="rounded-[2.5rem] bg-slate-800 px-7 py-12 text-white md:px-12 md:py-16">
+        <div className="rounded-[2.5rem] bg-[#3E4D3A] px-7 py-12 text-white md:px-12 md:py-16">
 
-          <p className="text-xs uppercase tracking-[0.25em] text-white/50">
+          <p className="text-xs uppercase tracking-[0.25em] text-[#D9E6F2]/70">
             Build your journey
           </p>
 
@@ -177,7 +177,7 @@ function Experiences() {
                 VOYARA finds the way.
               </h2>
 
-              <p className="mt-5 text-sm leading-6 text-white/60">
+              <p className="mt-5 text-sm leading-6 text-[#F7F9F6]/75">
                 Tell us what you want to experience, when you want to travel
                 and how much you want to spend.
               </p>
@@ -186,7 +186,7 @@ function Experiences() {
 
             <Link
               to="/plan-trip"
-              className="shrink-0 rounded-full bg-white px-7 py-3.5 font-medium text-slate-800 transition hover:bg-green-100"
+              className="shrink-0 rounded-full bg-[#F7F9F6] px-7 py-3.5 font-medium text-[#3E4D3A] transition hover:bg-[#D9E6F2]"
             >
               Plan a Trip →
             </Link>

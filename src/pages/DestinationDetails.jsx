@@ -190,20 +190,22 @@ function DestinationDetails() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#F7F9F6] px-6">
         <div className="text-center">
-          <p className="text-sm uppercase tracking-[0.25em] text-green-700">
+
+          <p className="text-sm uppercase tracking-[0.25em] text-[#6B8E60]">
             Destination not found
           </p>
 
-          <h1 className="mt-4 text-4xl font-semibold text-slate-800">
+          <h1 className="mt-4 text-4xl font-semibold text-[#3E4D3A]">
             We couldn't find this place.
           </h1>
 
           <Link
             to="/"
-            className="mt-7 inline-block rounded-full bg-slate-800 px-6 py-3 text-sm font-medium text-white transition hover:bg-green-700"
+            className="mt-7 inline-block rounded-full bg-[#3E4D3A] px-6 py-3 text-sm font-medium text-[#F7F9F6] transition hover:bg-[#6B8E60]"
           >
             Back to Home
           </Link>
+
         </div>
       </main>
     );
@@ -221,12 +223,12 @@ function DestinationDetails() {
           className="absolute inset-0 h-full w-full object-cover"
         />
 
-        <div className="absolute inset-0 bg-slate-900/40" />
+        <div className="absolute inset-0 bg-[#3E4D3A]/45" />
 
         <div className="relative z-10 mx-auto flex h-full max-w-7xl items-end px-6 pb-16 lg:px-10 lg:pb-20">
           <div className="max-w-3xl text-white">
 
-            <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-white/70">
+            <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-[#D9E6F2]/80">
               {destination.region}
             </p>
 
@@ -249,61 +251,61 @@ function DestinationDetails() {
 
           <div>
 
-            <p className="text-sm font-medium uppercase tracking-[0.25em] text-green-700">
+            <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#6B8E60]">
               Discover {destination.name}
             </p>
 
-            <h2 className="mt-4 text-4xl font-semibold leading-tight text-slate-800 md:text-5xl">
+            <h2 className="mt-4 text-4xl font-semibold leading-tight text-[#3E4D3A] md:text-5xl">
               A place worth
               <br />
               slowing down for.
             </h2>
 
-            <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600">
+            <p className="mt-6 max-w-2xl text-base leading-8 text-[#6B8E60]">
               {destination.description}
             </p>
 
-            <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600">
+            <p className="mt-4 max-w-2xl text-base leading-8 text-[#6B8E60]">
               {destination.descriptionTwo}
             </p>
 
           </div>
 
           {/* Quick Facts */}
-          <div className="rounded-[2rem] bg-white p-7 shadow-[0_12px_40px_rgba(30,41,59,0.05)]">
+          <div className="rounded-[2rem] bg-white p-7 shadow-[0_12px_40px_rgba(62,77,58,0.06)]">
 
-            <p className="text-xs font-medium uppercase tracking-[0.25em] text-slate-400">
+            <p className="text-xs font-medium uppercase tracking-[0.25em] text-[#6B8E60]">
               At a glance
             </p>
 
             <div className="mt-7 space-y-6">
 
               <div>
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-[#6B8E60]">
                   Best for
                 </p>
 
-                <p className="mt-1 font-medium text-slate-800">
+                <p className="mt-1 font-medium text-[#3E4D3A]">
                   {destination.bestFor}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-[#6B8E60]">
                   Ideal duration
                 </p>
 
-                <p className="mt-1 font-medium text-slate-800">
+                <p className="mt-1 font-medium text-[#3E4D3A]">
                   {destination.duration}
                 </p>
               </div>
 
               <div>
-                <p className="text-sm text-slate-400">
+                <p className="text-sm text-[#6B8E60]">
                   Best time
                 </p>
 
-                <p className="mt-1 font-medium text-slate-800">
+                <p className="mt-1 font-medium text-[#3E4D3A]">
                   {destination.bestTime}
                 </p>
               </div>
@@ -321,15 +323,15 @@ function DestinationDetails() {
 
           <div className="max-w-2xl">
 
-            <p className="text-sm font-medium uppercase tracking-[0.25em] text-green-700">
+            <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#6B8E60]">
               Don't miss these
             </p>
 
-            <h2 className="mt-4 text-4xl font-semibold text-slate-800 md:text-5xl">
+            <h2 className="mt-4 text-4xl font-semibold text-[#3E4D3A] md:text-5xl">
               Places worth the detour.
             </h2>
 
-            <p className="mt-5 text-base leading-7 text-slate-600">
+            <p className="mt-5 text-base leading-7 text-[#6B8E60]">
               A few places to start exploring {destination.name}.
             </p>
 
@@ -355,11 +357,11 @@ function DestinationDetails() {
 
                 <div className="p-6">
 
-                  <h3 className="text-xl font-semibold text-slate-800">
+                  <h3 className="text-xl font-semibold text-[#3E4D3A]">
                     {place.name}
                   </h3>
 
-                  <p className="mt-3 text-sm leading-6 text-slate-600">
+                  <p className="mt-3 text-sm leading-6 text-[#6B8E60]">
                     {place.text}
                   </p>
 
@@ -378,11 +380,11 @@ function DestinationDetails() {
 
         <div className="mx-auto max-w-7xl">
 
-          <p className="text-sm font-medium uppercase tracking-[0.25em] text-green-700">
+          <p className="text-sm font-medium uppercase tracking-[0.25em] text-[#6B8E60]">
             Experience it
           </p>
 
-          <h2 className="mt-4 text-4xl font-semibold text-slate-800 md:text-5xl">
+          <h2 className="mt-4 text-4xl font-semibold text-[#3E4D3A] md:text-5xl">
             More than places.
           </h2>
 
@@ -391,7 +393,7 @@ function DestinationDetails() {
             {destination.experiences.map((experience) => (
               <div
                 key={experience}
-                className="rounded-2xl border border-slate-200 bg-white p-6 text-sm font-medium text-slate-700 transition hover:-translate-y-1 hover:border-green-700/30 hover:shadow-sm"
+                className="rounded-2xl border border-[#A8C5B0] bg-white p-6 text-sm font-medium text-[#3E4D3A] transition hover:-translate-y-1 hover:border-[#6B8E60]/50 hover:shadow-sm"
               >
                 {experience}
               </div>
@@ -405,13 +407,13 @@ function DestinationDetails() {
       {/* Plan CTA */}
       <section className="px-6 pb-20 lg:px-10 lg:pb-28">
 
-        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-slate-800 px-7 py-12 text-white md:px-12 md:py-16">
+        <div className="mx-auto max-w-7xl overflow-hidden rounded-[2.5rem] bg-[#3E4D3A] px-7 py-12 text-white md:px-12 md:py-16">
 
           <div className="flex flex-col items-start justify-between gap-8 md:flex-row md:items-center">
 
             <div className="max-w-2xl">
 
-              <p className="text-xs uppercase tracking-[0.25em] text-white/50">
+              <p className="text-xs uppercase tracking-[0.25em] text-[#D9E6F2]/70">
                 Ready to go?
               </p>
 
@@ -421,7 +423,7 @@ function DestinationDetails() {
                 your next story.
               </h2>
 
-              <p className="mt-5 max-w-xl text-sm leading-6 text-white/60">
+              <p className="mt-5 max-w-xl text-sm leading-6 text-[#F7F9F6]/75">
                 Build a trip around the places and experiences you actually
                 want to discover.
               </p>
@@ -430,7 +432,7 @@ function DestinationDetails() {
 
             <Link
               to={`/plan-trip?destination=${slug}&interest=Nature`}
-              className="shrink-0 rounded-full bg-white px-7 py-3.5 font-medium text-slate-800 transition hover:bg-green-100"
+              className="shrink-0 rounded-full bg-[#F7F9F6] px-7 py-3.5 font-medium text-[#3E4D3A] transition hover:bg-[#D9E6F2]"
             >
               Plan this trip →
             </Link>
