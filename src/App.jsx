@@ -1,8 +1,15 @@
+import Navbar from "./components/Navbar"
+import Hero from "./components/Hero"
+
 function App() {
   return (
-    <div>
-      VOYARA
-    </div>
+    <>
+      <Navbar />
+
+      <main>
+        <Hero />
+      </main>
+    </>
   )
 }
 
