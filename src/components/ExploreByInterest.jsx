@@ -78,7 +78,7 @@ function ExploreByInterest() {
             <Link
               key={interest.title}
               to={`/plan-trip?interest=${interest.interest}`}
-              className="group relative block h-[360px] overflow-hidden rounded-[2rem] text-left"
+              className="group relative block h-[340px] overflow-hidden rounded-[2rem] text-left sm:h-[360px]"
             >
 
               {/* Image */}

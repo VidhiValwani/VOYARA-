@@ -40,7 +40,7 @@ function FeaturedExperience() {
         <div className="grid overflow-hidden rounded-[2rem] bg-white shadow-sm lg:grid-cols-2">
 
           {/* Image */}
-          <div className="relative min-h-[320px] lg:min-h-[500px]">
+          <div className="relative min-h-[280px] sm:min-h-[340px] lg:min-h-[500px]">
 
             <img
               src={meghalayaImage}
@@ -50,7 +50,7 @@ function FeaturedExperience() {
 
             <div className="absolute inset-0 bg-gradient-to-t from-[#3E4D3A]/70 via-transparent to-transparent" />
 
-            <div className="absolute bottom-8 left-8 text-white">
+            <div className="absolute bottom-6 left-6 text-white sm:bottom-8 sm:left-8">
 
               <p className="mb-2 text-sm uppercase tracking-[0.25em] text-[#D9E6F2]/80">
                 Featured destination
@@ -64,7 +64,7 @@ function FeaturedExperience() {
           </div>
 
           {/* Information */}
-          <div className="flex flex-col justify-center p-7 md:p-10 lg:p-12">
+          <div className="flex flex-col justify-center p-6 sm:p-8 md:p-10 lg:p-12">
 
             <p className="text-2xl font-medium leading-relaxed text-[#3E4D3A] md:text-3xl">
               {featuredExperience.tagline}

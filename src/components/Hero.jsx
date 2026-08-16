@@ -1,14 +1,15 @@
 import { Link } from "react-router-dom";
+import heroImage from "../assets/images/hero/hero.jpg";
 
 function Hero() {
   return (
     <section className="relative min-h-[calc(100vh-80px)] overflow-hidden">
       {/* Background Image */}
-      <img
-        src="https://images.unsplash.com/photo-1500534623283-312aade485b7"
-        alt="Beautiful mountain landscape"
-        className="absolute inset-0 h-full w-full object-cover"
-      />
+     <img
+  src={heroImage}
+  alt="Misty mountain road through the Himalayas"
+  className="absolute inset-0 h-full w-full object-cover"
+/>
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-[#3E4D3A]/45"></div>
