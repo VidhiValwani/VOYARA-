@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -8,8 +8,23 @@ function Navbar() {
     setMenuOpen(false);
   };
 
+  const navClass = ({ isActive }) =>
+    `text-sm font-medium transition ${
+      isActive
+        ? "text-[#6B8E60]"
+        : "text-[#3E4D3A] hover:text-[#6B8E60]"
+    }`;
+
+  const mobileNavClass = ({ isActive }) =>
+    `text-sm font-medium transition ${
+      isActive
+        ? "text-[#6B8E60]"
+        : "text-[#3E4D3A] hover:text-[#6B8E60]"
+    }`;
+
   return (
     <nav className="fixed left-0 top-0 z-50 w-full border-b border-[#A8C5B0]/40 bg-[#F7F9F6]/90 backdrop-blur-md">
+
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
 
         {/* Logo */}
@@ -24,66 +39,51 @@ function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 md:flex">
 
-          <Link
-            to="/"
-            className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
-          >
+          <NavLink to="/" end className={navClass}>
             Home
-          </Link>
+          </NavLink>
 
-          <Link
-            to="/discover-india"
-            className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
-          >
+          <NavLink to="/discover-india" className={navClass}>
             Discover India
-          </Link>
+          </NavLink>
 
-          <Link
-            to="/experiences"
-            className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
-          >
+          <NavLink to="/experiences" className={navClass}>
             Experiences
-          </Link>
+          </NavLink>
 
-          <Link
-            to="/plan-trip"
-            className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
-          >
+          <NavLink to="/plan-trip" className={navClass}>
             Plan a Trip
-          </Link>
+          </NavLink>
 
-          <Link
-            to="/international"
-            className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
-          >
+          <NavLink to="/international" className={navClass}>
             International
-          </Link>
+          </NavLink>
 
-          <Link
-            to="/about"
-            className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
-          >
+          <NavLink to="/about" className={navClass}>
             About
-          </Link>
+          </NavLink>
 
         </div>
 
         {/* Desktop Right Side */}
         <div className="hidden items-center gap-4 md:flex">
 
-          <Link
-            to="/login"
-            className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
-          >
+          <NavLink to="/login" className={navClass}>
             Login
-          </Link>
+          </NavLink>
 
-          <Link
+          <NavLink
             to="/signup"
-            className="rounded-full bg-[#3E4D3A] px-5 py-2.5 text-sm font-medium text-[#F7F9F6] transition hover:bg-[#6B8E60]"
+            className={({ isActive }) =>
+              `rounded-full px-5 py-2.5 text-sm font-medium transition ${
+                isActive
+                  ? "bg-[#6B8E60] text-[#F7F9F6]"
+                  : "bg-[#3E4D3A] text-[#F7F9F6] hover:bg-[#6B8E60]"
+              }`
+            }
           >
             Sign Up
-          </Link>
+          </NavLink>
 
         </div>
 
@@ -105,76 +105,83 @@ function Navbar() {
 
           <div className="flex flex-col gap-5">
 
-            <Link
+            <NavLink
               to="/"
+              end
               onClick={closeMenu}
-              className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
+              className={mobileNavClass}
             >
               Home
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/discover-india"
               onClick={closeMenu}
-              className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
+              className={mobileNavClass}
             >
               Discover India
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/experiences"
               onClick={closeMenu}
-              className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
+              className={mobileNavClass}
             >
               Experiences
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/plan-trip"
               onClick={closeMenu}
-              className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
+              className={mobileNavClass}
             >
               Plan a Trip
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/international"
               onClick={closeMenu}
-              className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
+              className={mobileNavClass}
             >
               International
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/about"
               onClick={closeMenu}
-              className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
+              className={mobileNavClass}
             >
               About
-            </Link>
+            </NavLink>
 
-            {/* Divider */}
             <div className="my-1 border-t border-[#A8C5B0]" />
 
-            <Link
+            <NavLink
               to="/login"
               onClick={closeMenu}
-              className="text-sm font-medium text-[#3E4D3A] transition hover:text-[#6B8E60]"
+              className={mobileNavClass}
             >
               Login
-            </Link>
+            </NavLink>
 
-            <Link
+            <NavLink
               to="/signup"
               onClick={closeMenu}
-              className="w-full rounded-full bg-[#3E4D3A] px-5 py-3 text-center text-sm font-medium text-[#F7F9F6] transition hover:bg-[#6B8E60]"
+              className={({ isActive }) =>
+                `w-full rounded-full px-5 py-3 text-center text-sm font-medium transition ${
+                  isActive
+                    ? "bg-[#6B8E60] text-[#F7F9F6]"
+                    : "bg-[#3E4D3A] text-[#F7F9F6] hover:bg-[#6B8E60]"
+                }`
+              }
             >
               Sign Up
-            </Link>
+            </NavLink>
 
           </div>
         </div>
       )}
+
     </nav>
   );
 }
