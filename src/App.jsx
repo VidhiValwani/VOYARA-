@@ -13,6 +13,7 @@ import About from "./pages/About";
 import International from "./pages/International";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
+import Footer from "./components/Footer";
 
 function Home() {
   return (
@@ -31,44 +32,24 @@ function App() {
       <Navbar />
 
       <Routes>
-  {/* Homepage */}
-  <Route path="/" element={<Home />} />
+        {/* Homepage */}
+        <Route path="/" element={<Home />} />
 
-  {/* Trip Planner */}
-  <Route path="/plan-trip" element={<PlanTrip />} />
+        {/* Trip Planner */}
+        <Route path="/plan-trip" element={<PlanTrip />} />
 
-  {/* Destination Details */}
-  <Route
-    path="/destinations/:slug"
-    element={<DestinationDetails />}
-  />
+        {/* Destination Details */}
+        <Route path="/destinations/:slug" element={<DestinationDetails />} />
 
-  <Route
-  path="/discover-india"
-  element={<DiscoverIndia />}
-/>
+        <Route path="/discover-india" element={<DiscoverIndia />} />
 
- <Route
-  path="/experiences"
-  element={<Experiences />}
-/>
-<Route
-  path="/about"
-  element={<About />}
-/>
-<Route
-  path="/international"
-  element={<International />}
-/>
-<Route
-  path="/login"
-  element={<Login />}
-/>
-<Route
-  path="/signup"
-  element={<SignUp />}
-/>
-</Routes>
+        <Route path="/experiences" element={<Experiences />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/international" element={<International />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+      </Routes>
+      <Footer />
     </BrowserRouter>
   );
 }
