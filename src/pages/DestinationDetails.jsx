@@ -215,7 +215,7 @@ function DestinationDetails() {
     <main className="min-h-screen bg-[#F7F9F6]">
 
       {/* Hero */}
-      <section className="relative h-[70vh] min-h-[520px] overflow-hidden">
+      <section className="relative mt-20 h-[60vh] min-h-[440px] overflow-hidden sm:h-[65vh] lg:h-[70vh] lg:min-h-[520px]">
 
         <img
           src={destination.image}
@@ -225,14 +225,14 @@ function DestinationDetails() {
 
         <div className="absolute inset-0 bg-[#3E4D3A]/45" />
 
-        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-end px-6 pb-16 lg:px-10 lg:pb-20">
+        <div className="relative z-10 mx-auto flex h-full max-w-7xl items-end px-6 pb-10 sm:pb-14 lg:px-10 lg:pb-20">
           <div className="max-w-3xl text-white">
 
             <p className="mb-4 text-sm font-medium uppercase tracking-[0.3em] text-[#D9E6F2]/80">
               {destination.region}
             </p>
 
-            <h1 className="text-6xl font-semibold tracking-tight md:text-8xl">
+            <h1 className="text-5xl font-semibold tracking-tight sm:text-6xl md:text-8xl">
               {destination.name}
             </h1>
 
