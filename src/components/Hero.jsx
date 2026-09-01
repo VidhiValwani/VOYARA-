@@ -3,7 +3,7 @@ import heroImage from "../assets/images/hero/hero.jpg";
 
 function Hero() {
   return (
-    <section className="relative min-h-[calc(100vh-80px)] overflow-hidden">
+    <section className="relative mt-20 min-h-[calc(100vh-80px)] overflow-hidden">
       {/* Background Image */}
      <img
   src={heroImage}

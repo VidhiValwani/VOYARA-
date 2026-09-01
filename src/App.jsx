@@ -1,10 +1,5 @@
 import { useEffect } from "react";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  useLocation,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -20,9 +15,10 @@ import About from "./pages/About";
 import International from "./pages/International";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
-
+import HooksDemo from "./pages/HooksDemo";
+import { TravelProvider } from "./context/TravelContext";
+import { ThemeProvider } from "./context/ThemeContext";
 import Footer from "./components/Footer";
-
 
 /* Scroll to top whenever route changes */
 function ScrollToTop() {
@@ -34,7 +30,6 @@ function ScrollToTop() {
 
   return null;
 }
-
 
 /* Home Page */
 function Home() {
@@ -48,75 +43,53 @@ function Home() {
   );
 }
 
-
 function App() {
   return (
-    <BrowserRouter>
+    <TravelProvider>
+      <ThemeProvider>
+        <BrowserRouter>
+          <ScrollToTop />
 
-      <ScrollToTop />
+          <Navbar />
 
-      <Navbar />
+          <Routes>
+            {/* Homepage */}
+            <Route path="/" element={<Home />} />
 
-      <Routes>
+            {/* Trip Planner */}
+            <Route path="/plan-trip" element={<PlanTrip />} />
 
-        {/* Homepage */}
-        <Route
-          path="/"
-          element={<Home />}
-        />
+            {/* Destination Details */}
+            <Route
+              path="/destinations/:slug"
+              element={<DestinationDetails />}
+            />
 
-        {/* Trip Planner */}
-        <Route
-          path="/plan-trip"
-          element={<PlanTrip />}
-        />
+            {/* Discover India */}
+            <Route path="/discover-india" element={<DiscoverIndia />} />
 
-        {/* Destination Details */}
-        <Route
-          path="/destinations/:slug"
-          element={<DestinationDetails />}
-        />
+            {/* Experiences */}
+            <Route path="/experiences" element={<Experiences />} />
 
-        {/* Discover India */}
-        <Route
-          path="/discover-india"
-          element={<DiscoverIndia />}
-        />
+            {/* Hooks Demo */}
+            <Route path="/hooks-demo" element={<HooksDemo />} />
 
-        {/* Experiences */}
-        <Route
-          path="/experiences"
-          element={<Experiences />}
-        />
+            {/* About */}
+            <Route path="/about" element={<About />} />
 
-        {/* About */}
-        <Route
-          path="/about"
-          element={<About />}
-        />
+            {/* International */}
+            <Route path="/international" element={<International />} />
 
-        {/* International */}
-        <Route
-          path="/international"
-          element={<International />}
-        />
+            {/* Authentication */}
+            <Route path="/login" element={<Login />} />
 
-        {/* Authentication */}
-        <Route
-          path="/login"
-          element={<Login />}
-        />
+            <Route path="/signup" element={<SignUp />} />
+          </Routes>
 
-        <Route
-          path="/signup"
-          element={<SignUp />}
-        />
-
-      </Routes>
-
-      <Footer />
-
-    </BrowserRouter>
+          <Footer />
+        </BrowserRouter>
+      </ThemeProvider>
+    </TravelProvider>
   );
 }
 
