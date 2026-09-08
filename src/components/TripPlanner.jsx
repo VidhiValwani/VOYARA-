@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { useTravel } from "../context/TravelContext";
+import useTravel from "../hooks/useTravel";
 
 function TripPlanner() {
   const [searchParams] = useSearchParams();
 
-  const { addTrip, trips } = useTravel();
+  const { addTrip, trips, updateTripDetails } = useTravel();
 
   const destinationFromUrl = searchParams.get("destination");
   const interestFromUrl = searchParams.get("interest");
@@ -112,13 +112,19 @@ function TripPlanner() {
       return;
     }
 
-    setTripMessage("");
-    setTripSearched(true);
+ updateTripDetails({
+  destination,
+  startDate,
+  endDate,
+  travellers,
+  budget,
+  interests: selectedInterests,
+});
 
-    // New trip details = booking is not confirmed yet
-    setBookingConfirmed(false);
-  };
-
+setTripMessage("");
+setTripSearched(true);
+setBookingConfirmed(false);
+};
   const groupDiscount = travellers >= 5 ? 10 : travellers >= 3 ? 5 : 0;
   const personalOffer =
     trips === 0
@@ -129,16 +135,16 @@ function TripPlanner() {
           ? "✨ Returning Traveller Offer — 5% OFF"
           : "Welcome back to VOYARA.";
 
-          {/* Personal Offer */}
-<div className="mt-4 rounded-2xl bg-[#D9E6F2]/15 p-4">
-  <p className="text-xs uppercase tracking-wider text-[#D9E6F2]/70">
-    Your Special Offer
-  </p>
+  {
+    /* Personal Offer */
+  }
+  <div className="mt-4 rounded-2xl bg-[#D9E6F2]/15 p-4">
+    <p className="text-xs uppercase tracking-wider text-[#D9E6F2]/70">
+      Your Special Offer
+    </p>
 
-  <p className="mt-2 text-sm font-medium text-white">
-    {personalOffer}
-  </p>
-</div>
+    <p className="mt-2 text-sm font-medium text-white">{personalOffer}</p>
+  </div>;
   // NEW: confirm booking and automatically increase trip count
   const handleConfirmBooking = () => {
     if (bookingConfirmed) return;

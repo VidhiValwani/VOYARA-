@@ -1,36 +1,38 @@
 import { useContext, useEffect } from "react";
 import useTravel from "../hooks/useTravel";
 import ThemeContext from "../context/ThemeContext";
-import useCounter from "../hooks/useCounter";
 
 function HooksDemo() {
   // Context API
-  const { travellerName, trips } = useTravel();
-  const { theme, toggleTheme } = useContext(ThemeContext);
+  const {
+    travellerName,
+    trips,
+    tripDetails,
+    // updateTripDetails,
+  } = useTravel();
 
-  // Custom Hook
-  const travellers = useCounter(2);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   // Group offer based on number of travellers
   const offerMessage =
-    travellers.count >= 5
+    tripDetails.travellers >= 5
       ? "🎉 Group Offer Unlocked — 10% OFF"
-      : travellers.count >= 3
+      : tripDetails.travellers >= 3
         ? "🎉 Group Offer Unlocked — 5% OFF"
         : "Add more travellers to unlock a group offer.";
 
   // useEffect
   // Updates browser tab title whenever traveller count changes
   useEffect(() => {
-    document.title = `VOYARA | ${travellers.count} Traveller${
-      travellers.count > 1 ? "s" : ""
+    document.title = `VOYARA | ${tripDetails.travellers} Traveller${
+      tripDetails.travellers > 1 ? "s" : ""
     }`;
-  }, [travellers.count]);
+  }, [tripDetails.travellers]);
 
   // New user detection
   const isNewUser = trips === 0;
 
-  // Loyalty offer based on number of previous trips
+  // Loyalty offer based on previous trips
   const loyaltyOffer =
     trips >= 5
       ? "✨ Loyalty Offer — 10% OFF"
@@ -110,7 +112,7 @@ function HooksDemo() {
         </section>
 
         {/* ================= COUNTERS ================= */}
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid items-stretch gap-6 md:grid-cols-2">
 
           {/* ---------- Traveller Counter ---------- */}
           <section
@@ -126,26 +128,42 @@ function HooksDemo() {
               Number of Travellers
             </h2>
 
-            <div className="mt-6 flex items-center justify-center gap-6">
+            {/* <div className="mt-6 flex items-center justify-center gap-6">
               <button
-                onClick={travellers.decrement}
-                disabled={travellers.count <= 1}
+                onClick={() =>
+                  updateTripDetails({
+                    travellers: Math.max(
+                      1,
+                      tripDetails.travellers - 1
+                    ),
+                  })
+                }
+                disabled={tripDetails.travellers <= 1}
                 className="h-12 w-12 rounded-full border border-[#A8C5B0] text-xl transition hover:bg-[#F7F9F6] disabled:cursor-not-allowed disabled:opacity-40"
               >
                 −
               </button>
 
               <span className="text-4xl font-semibold">
-                {travellers.count}
+                {tripDetails.travellers}
               </span>
 
               <button
-                onClick={travellers.increment}
+                onClick={() =>
+                  updateTripDetails({
+                    travellers: tripDetails.travellers + 1,
+                  })
+                }
                 className="h-12 w-12 rounded-full border border-[#A8C5B0] text-xl transition hover:bg-[#F7F9F6]"
               >
                 +
               </button>
-            </div>
+            </div> */}
+            <div className="mt-6 flex items-center justify-center">
+  <span className="text-4xl font-semibold">
+    {tripDetails.travellers}
+  </span>
+</div>
 
             <p className="mt-5 text-center text-[#6B8E60]">
               {offerMessage}
@@ -166,7 +184,7 @@ function HooksDemo() {
               Your VOYARA Trips
             </h2>
 
-            {/* Trips are updated automatically after booking */}
+            {/* Trips update automatically after booking */}
             <div className="mt-6 flex items-center justify-center">
               <span className="text-4xl font-semibold">
                 {trips}
@@ -176,61 +194,50 @@ function HooksDemo() {
             <p className="mt-5 text-center text-[#6B8E60]">
               {loyaltyOffer}
             </p>
+
+            {/* ================= SHARED TRIP STATE ================= */}
+            <div className="mt-6 rounded-2xl border border-[#A8C5B0] p-5">
+              <p className="text-xs uppercase tracking-[0.2em] text-[#6B8E60]">
+                Shared Trip State
+              </p>
+
+              <div className="mt-4 space-y-2 text-sm">
+                <p>
+                  <strong>Destination:</strong>{" "}
+                  {tripDetails.destination || "No trip planned yet"}
+                </p>
+
+                <p>
+                  <strong>Travel Dates:</strong>{" "}
+                  {tripDetails.startDate && tripDetails.endDate
+                    ? `${tripDetails.startDate} — ${tripDetails.endDate}`
+                    : "Not selected"}
+                </p>
+
+                <p>
+                  <strong>Travellers:</strong>{" "}
+                  {tripDetails.travellers}
+                </p>
+
+                <p>
+                  <strong>Budget:</strong>{" "}
+                  ₹{tripDetails.budget.toLocaleString("en-IN")}
+                </p>
+
+                <p>
+                  <strong>Interests:</strong>{" "}
+                  {tripDetails.interests.length > 0
+                    ? tripDetails.interests.join(", ")
+                    : "None selected"}
+                </p>
+              </div>
+            </div>
           </section>
         </div>
 
-        {/* ================= HOOKS USED ================= */}
-        <section
-          className={`mt-6 rounded-[2rem] p-7 shadow-sm ${
-            theme === "dark" ? "bg-[#3E4D3A]" : "bg-white"
-          }`}
-        >
-          <p className="text-sm uppercase tracking-[0.2em] text-[#6B8E60]">
-            Concepts Used
-          </p>
-
-          <div className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-
-            {/* useState */}
-            <div className="rounded-2xl border border-[#A8C5B0] p-4">
-              <strong>useState</strong>
-
-              <p className="mt-2 text-sm text-[#6B8E60]">
-                Manages theme state inside the Theme Context.
-              </p>
-            </div>
-
-            {/* useEffect */}
-            <div className="rounded-2xl border border-[#A8C5B0] p-4">
-              <strong>useEffect</strong>
-
-              <p className="mt-2 text-sm text-[#6B8E60]">
-                Updates the browser title when traveller count changes.
-              </p>
-            </div>
-
-            {/* useContext */}
-            <div className="rounded-2xl border border-[#A8C5B0] p-4">
-              <strong>useContext</strong>
-
-              <p className="mt-2 text-sm text-[#6B8E60]">
-                Shares traveller information and theme across components.
-              </p>
-            </div>
-
-            {/* Custom Hook */}
-            <div className="rounded-2xl border border-[#A8C5B0] p-4">
-              <strong>Custom Hook</strong>
-
-              <p className="mt-2 text-sm text-[#6B8E60]">
-                Reuses counter logic for travellers and trips.
-              </p>
-            </div>
-
+            
           </div>
-        </section>
-
-      </div>
+  
     </main>
   );
 }
