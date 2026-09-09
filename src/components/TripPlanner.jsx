@@ -146,12 +146,38 @@ setBookingConfirmed(false);
     <p className="mt-2 text-sm font-medium text-white">{personalOffer}</p>
   </div>;
   // NEW: confirm booking and automatically increase trip count
-  const handleConfirmBooking = () => {
-    if (bookingConfirmed) return;
+const handleConfirmBooking = async () => {
+  if (bookingConfirmed) return;
+
+  try {
+    const response = await fetch("http://localhost:5000/api/trips", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        destination,
+        startDate,
+        endDate,
+        travellers,
+        budget,
+        interests: selectedInterests,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to save trip");
+    }
+
+    await response.json();
 
     addTrip();
     setBookingConfirmed(true);
-  };
+  } catch (error) {
+    console.error("Booking error:", error);
+    setTripMessage("Unable to save your trip. Please try again.");
+  }
+};
 
   return (
     <div className="grid w-full min-w-0 items-start gap-6 lg:grid-cols-[minmax(0,1.55fr)_minmax(0,0.65fr)]">
