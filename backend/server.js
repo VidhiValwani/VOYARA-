@@ -8,7 +8,12 @@ const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const { body, validationResult } = require("express-validator");
 const Trip = require("./models/Trip");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
+const User = require("./models/User");
+const authenticateToken = require("./middleware/authMiddleware");
+const requireAdmin = require("./middleware/roleMiddleware");
 const app = express();
 
 // const rateLimit = require("express-rate-limit");
@@ -41,10 +46,154 @@ mongoose
 app.get("/", (req, res) => {
   res.send("VOYARA Backend API is running");
 });
+app.get(
+  "/api/admin",
+  authenticateToken,
+  requireAdmin,
+  (req, res) => {
+    res.json({
+      message: "Welcome Admin! You have access to this route.",
+      user: req.user,
+    });
+  }
+);
+app.post(
+  "/api/auth/signup",
+  [
+    body("name")
+      .trim()
+      .notEmpty()
+      .withMessage("Name is required"),
 
+    body("email")
+      .trim()
+      .isEmail()
+      .withMessage("Valid email is required"),
+
+    body("password")
+      .isLength({ min: 6 })
+      .withMessage("Password must be at least 6 characters"),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+
+    try {
+      const { name, email, password } = req.body;
+
+      const existingUser = await User.findOne({ email });
+
+      if (existingUser) {
+        return res.status(409).json({
+          message: "User already exists",
+        });
+      }
+
+      const hashedPassword = await bcrypt.hash(password, 10);
+
+      const user = new User({
+        name,
+        email,
+        password: hashedPassword,
+      });
+
+      const savedUser = await user.save();
+
+      res.status(201).json({
+        message: "User registered successfully",
+        user: {
+          id: savedUser._id,
+          name: savedUser.name,
+          email: savedUser.email,
+          role: savedUser.role,
+        },
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
+app.post(
+  "/api/auth/login",
+  [
+    body("email")
+      .trim()
+      .isEmail()
+      .withMessage("Valid email is required"),
+
+    body("password")
+      .notEmpty()
+      .withMessage("Password is required"),
+  ],
+  async (req, res) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).json({
+        errors: errors.array(),
+      });
+    }
+
+    try {
+      const { email, password } = req.body;
+
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        return res.status(401).json({
+          message: "Invalid email or password",
+        });
+      }
+
+      const passwordMatch = await bcrypt.compare(
+        password,
+        user.password
+      );
+
+      if (!passwordMatch) {
+        return res.status(401).json({
+          message: "Invalid email or password",
+        });
+      }
+
+      const token = jwt.sign(
+        {
+          userId: user._id,
+          role: user.role,
+        },
+        process.env.JWT_SECRET,
+        {
+          expiresIn: "1h",
+        }
+      );
+
+      res.json({
+        message: "Login successful",
+        token,
+        user: {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          role: user.role,
+        },
+      });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  }
+);
 // GET all trips
-app.get("/api/trips", async (req, res) => {
-  try {
+app.get("/api/trips", authenticateToken, async (req, res) => {
+    try {
     const trips = await Trip.find();
     res.json(trips);
   } catch (error) {
@@ -54,7 +203,7 @@ app.get("/api/trips", async (req, res) => {
 
 // POST a new trip
 app.post(
-  "/api/trips",
+  "/api/trips",  authenticateToken,
   [
     body("destination")
       .trim()
@@ -100,7 +249,7 @@ app.post(
 );
 // UPDATE a trip
 app.put(
-  "/api/trips/:id",
+  "/api/trips/:id",  authenticateToken,
   [
     body("destination")
       .optional()
@@ -163,7 +312,7 @@ app.put(
 );
 
 // DELETE a trip
-app.delete("/api/trips/:id", async (req, res) => {
+app.delete("/api/trips/:id",   authenticateToken, async (req, res) => {
   try {
     const deletedTrip = await Trip.findByIdAndDelete(req.params.id);
 
