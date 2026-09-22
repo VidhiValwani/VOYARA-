@@ -1,32 +1,41 @@
 import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+
+const [isLoggedIn, setIsLoggedIn] = useState(
+  !!localStorage.getItem("token")
+);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => {
     setMenuOpen(false);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+navigate("/profile");
+    setIsLoggedIn(false);
+    closeMenu();
+
+    navigate("/login");
+  };
+
   const navClass = ({ isActive }) =>
     `text-sm font-medium transition ${
-      isActive
-        ? "text-[#6B8E60]"
-        : "text-[#3E4D3A] hover:text-[#6B8E60]"
+      isActive ? "text-[#6B8E60]" : "text-[#3E4D3A] hover:text-[#6B8E60]"
     }`;
 
   const mobileNavClass = ({ isActive }) =>
     `text-sm font-medium transition ${
-      isActive
-        ? "text-[#6B8E60]"
-        : "text-[#3E4D3A] hover:text-[#6B8E60]"
+      isActive ? "text-[#6B8E60]" : "text-[#3E4D3A] hover:text-[#6B8E60]"
     }`;
 
   return (
     <nav className="fixed left-0 top-0 z-50 w-full border-b border-[#A8C5B0]/40 bg-[#F7F9F6]/90 backdrop-blur-md">
-
       <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 lg:px-10">
-
         {/* Logo */}
         <Link
           to="/"
@@ -38,7 +47,6 @@ function Navbar() {
 
         {/* Desktop Navigation */}
         <div className="hidden items-center gap-8 md:flex">
-
           <NavLink to="/" end className={navClass}>
             Home
           </NavLink>
@@ -62,29 +70,44 @@ function Navbar() {
           <NavLink to="/about" className={navClass}>
             About
           </NavLink>
-
         </div>
 
         {/* Desktop Right Side */}
         <div className="hidden items-center gap-4 md:flex">
+          {!isLoggedIn ? (
+            <>
+              <NavLink to="/login" className={navClass}>
+                Login
+              </NavLink>
 
-          <NavLink to="/login" className={navClass}>
-            Login
-          </NavLink>
+              <NavLink
+                to="/signup"
+                className={({ isActive }) =>
+                  `rounded-full px-5 py-2.5 text-sm font-medium transition ${
+                    isActive
+                      ? "bg-[#6B8E60] text-[#F7F9F6]"
+                      : "bg-[#3E4D3A] text-[#F7F9F6] hover:bg-[#6B8E60]"
+                  }`
+                }
+              >
+                Sign Up
+              </NavLink>
+            </>
+          ) : (
+            <>
+              <NavLink to="/profile" className={navClass}>
+                Profile
+              </NavLink>
 
-          <NavLink
-            to="/signup"
-            className={({ isActive }) =>
-              `rounded-full px-5 py-2.5 text-sm font-medium transition ${
-                isActive
-                  ? "bg-[#6B8E60] text-[#F7F9F6]"
-                  : "bg-[#3E4D3A] text-[#F7F9F6] hover:bg-[#6B8E60]"
-              }`
-            }
-          >
-            Sign Up
-          </NavLink>
-
+              <button
+                type="button"
+                onClick={handleLogout}
+                className="rounded-full bg-[#3E4D3A] px-5 py-2.5 text-sm font-medium text-[#F7F9F6] transition hover:bg-[#6B8E60]"
+              >
+                Logout
+              </button>
+            </>
+          )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -96,21 +119,13 @@ function Navbar() {
         >
           {menuOpen ? "×" : "☰"}
         </button>
-
       </div>
 
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="border-t border-[#A8C5B0]/50 bg-[#F7F9F6] px-6 py-6 shadow-lg md:hidden">
-
           <div className="flex flex-col gap-5">
-
-            <NavLink
-              to="/"
-              end
-              onClick={closeMenu}
-              className={mobileNavClass}
-            >
+            <NavLink to="/" end onClick={closeMenu} className={mobileNavClass}>
               Home
             </NavLink>
 
@@ -146,42 +161,58 @@ function Navbar() {
               International
             </NavLink>
 
-            <NavLink
-              to="/about"
-              onClick={closeMenu}
-              className={mobileNavClass}
-            >
+            <NavLink to="/about" onClick={closeMenu} className={mobileNavClass}>
               About
             </NavLink>
 
             <div className="my-1 border-t border-[#A8C5B0]" />
 
-            <NavLink
-              to="/login"
-              onClick={closeMenu}
-              className={mobileNavClass}
-            >
-              Login
-            </NavLink>
+            {!isLoggedIn ? (
+              <>
+                <NavLink
+                  to="/login"
+                  onClick={closeMenu}
+                  className={mobileNavClass}
+                >
+                  Login
+                </NavLink>
 
-            <NavLink
-              to="/signup"
-              onClick={closeMenu}
-              className={({ isActive }) =>
-                `w-full rounded-full px-5 py-3 text-center text-sm font-medium transition ${
-                  isActive
-                    ? "bg-[#6B8E60] text-[#F7F9F6]"
-                    : "bg-[#3E4D3A] text-[#F7F9F6] hover:bg-[#6B8E60]"
-                }`
-              }
-            >
-              Sign Up
-            </NavLink>
+                <NavLink
+                  to="/signup"
+                  onClick={closeMenu}
+                  className={({ isActive }) =>
+                    `w-full rounded-full px-5 py-3 text-center text-sm font-medium transition ${
+                      isActive
+                        ? "bg-[#6B8E60] text-[#F7F9F6]"
+                        : "bg-[#3E4D3A] text-[#F7F9F6] hover:bg-[#6B8E60]"
+                    }`
+                  }
+                >
+                  Sign Up
+                </NavLink>
+              </>
+            ) : (
+              <>
+                <NavLink
+                  to="/profile"
+                  onClick={closeMenu}
+                  className={mobileNavClass}
+                >
+                  Profile
+                </NavLink>
 
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="w-full rounded-full bg-[#3E4D3A] px-5 py-3 text-center text-sm font-medium text-[#F7F9F6] transition hover:bg-[#6B8E60]"
+                >
+                  Logout
+                </button>
+              </>
+            )}
           </div>
         </div>
       )}
-
     </nav>
   );
 }
