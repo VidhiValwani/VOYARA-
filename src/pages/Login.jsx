@@ -44,6 +44,7 @@ function Login() {
     alert("Login successful!");
 
     navigate("/profile");
+    window.location.reload();
   } catch (error) {
     setError(error.message);
   } finally {
