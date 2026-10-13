@@ -21,6 +21,8 @@ import { TravelProvider } from "./context/TravelContext";
 import { ThemeProvider } from "./context/ThemeContext";
 import Footer from "./components/Footer";
 
+import RealTimeNotifications from "./components/RealTimeNotifications";
+
 /* Scroll to top whenever route changes */
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -40,6 +42,7 @@ function Home() {
       <HiddenIndia />
       <ExploreByInterest />
       <FeaturedExperience />
+      <RealTimeNotifications />
     </>
   );
 }

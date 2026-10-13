@@ -331,3 +331,84 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
 });
+const WebSocket = require("ws");
+
+const wss = new WebSocket.Server({ port: 8081 });
+
+
+
+wss.on("connection", (ws) => {
+  console.log("WebSocket client connected");
+
+  ws.send(
+    JSON.stringify({
+      type: "text",
+      text: "Connected to VOYARA real-time server!",
+      name: "VOYARA",
+      time: new Date().toISOString(),
+    })
+  );
+
+  ws.on("message", (message) => {
+    try {
+      const data = JSON.parse(message.toString());
+
+      if (!["text", "image", "video"].includes(data.type)) {
+        return;
+      }
+
+      const payload = {
+        type: data.type,
+        name:
+          typeof data.name === "string"
+            ? data.name.slice(0, 100)
+            : "Traveller",
+        text:
+          typeof data.text === "string"
+            ? data.text.slice(0, 2000)
+            : "",
+        fileName:
+          typeof data.fileName === "string"
+            ? data.fileName.slice(0, 200)
+            : "",
+        time: new Date().toISOString(),
+      };
+
+      if (data.type === "image" && typeof data.image === "string") {
+        payload.image = data.image;
+      }
+
+      if (data.type === "video" && typeof data.video === "string") {
+        payload.video = data.video;
+      }
+
+      if (
+        (data.type === "image" && !payload.image) ||
+        (data.type === "video" && !payload.video)
+      ) {
+        return;
+      }
+
+      const outgoing = JSON.stringify(payload);
+
+      wss.clients.forEach((client) => {
+        if (client.readyState === WebSocket.OPEN) {
+          client.send(outgoing);
+        }
+      });
+
+      console.log(`${payload.type} update broadcast`);
+    } catch (error) {
+      console.log("Invalid WebSocket message:", error.message);
+    }
+  });
+
+  ws.on("close", () => {
+    console.log("WebSocket client disconnected");
+  });
+});
+
+console.log("WebSocket server running on ws://localhost:8081");
+
+
+console.log("WebSocket server running on ws://localhost:8081");
