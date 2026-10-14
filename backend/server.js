@@ -1,4 +1,5 @@
-/* global require, process */
+
+/* global process */
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -7,21 +8,22 @@ require("dotenv").config();
 const helmet = require("helmet");
 const rateLimit = require("express-rate-limit");
 const { body, validationResult } = require("express-validator");
-const Trip = require("./models/Trip");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const http = require("http");
+const WebSocket = require("ws");
 
+const Trip = require("./models/Trip");
 const User = require("./models/User");
 const authenticateToken = require("./middleware/authMiddleware");
 const requireAdmin = require("./middleware/roleMiddleware");
+
 const app = express();
 
-// const rateLimit = require("express-rate-limit");
-// Middleware
-app.use(cors());
-app.use(express.json());
+// ==================== MIDDLEWARE ====================
 
-// Security middleware
+app.use(cors());
+app.use(express.json({ limit: "5mb" }));
 app.use(helmet());
 
 const limiter = rateLimit({
@@ -32,7 +34,8 @@ const limiter = rateLimit({
 
 app.use(limiter);
 
-// MongoDB Connection
+// ==================== MONGODB CONNECTION ====================
+
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
@@ -42,10 +45,14 @@ mongoose
     console.log("MongoDB connection error:", error.message);
   });
 
-// Test route
+// ==================== TEST ROUTE ====================
+
 app.get("/", (req, res) => {
   res.send("VOYARA Backend API is running");
 });
+
+// ==================== ADMIN ROUTE ====================
+
 app.get(
   "/api/admin",
   authenticateToken,
@@ -57,6 +64,9 @@ app.get(
     });
   }
 );
+
+// ==================== USER SIGNUP ====================
+
 app.post(
   "/api/auth/signup",
   [
@@ -85,8 +95,11 @@ app.post(
 
     try {
       const { name, email, password } = req.body;
+      const normalizedEmail = email.toLowerCase();
 
-      const existingUser = await User.findOne({ email });
+      const existingUser = await User.findOne({
+        email: normalizedEmail,
+      });
 
       if (existingUser) {
         return res.status(409).json({
@@ -98,7 +111,7 @@ app.post(
 
       const user = new User({
         name,
-        email,
+        email: normalizedEmail,
         password: hashedPassword,
       });
 
@@ -120,6 +133,9 @@ app.post(
     }
   }
 );
+
+// ==================== USER LOGIN ====================
+
 app.post(
   "/api/auth/login",
   [
@@ -144,7 +160,9 @@ app.post(
     try {
       const { email, password } = req.body;
 
-      const user = await User.findOne({ email });
+      const user = await User.findOne({
+        email: email.toLowerCase(),
+      });
 
       if (!user) {
         return res.status(401).json({
@@ -191,19 +209,25 @@ app.post(
     }
   }
 );
-// GET all trips
+
+// ==================== GET ALL TRIPS ====================
+
 app.get("/api/trips", authenticateToken, async (req, res) => {
-    try {
+  try {
     const trips = await Trip.find();
     res.json(trips);
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      message: error.message,
+    });
   }
 });
 
-// POST a new trip
+// ==================== CREATE A TRIP ====================
+
 app.post(
-  "/api/trips",  authenticateToken,
+  "/api/trips",
+  authenticateToken,
   [
     body("destination")
       .trim()
@@ -247,9 +271,12 @@ app.post(
     }
   }
 );
-// UPDATE a trip
+
+// ==================== UPDATE A TRIP ====================
+
 app.put(
-  "/api/trips/:id",  authenticateToken,
+  "/api/trips/:id",
+  authenticateToken,
   [
     body("destination")
       .optional()
@@ -311,31 +338,43 @@ app.put(
   }
 );
 
-// DELETE a trip
-app.delete("/api/trips/:id",   authenticateToken, async (req, res) => {
-  try {
-    const deletedTrip = await Trip.findByIdAndDelete(req.params.id);
+// ==================== DELETE A TRIP ====================
 
-    if (!deletedTrip) {
-      return res.status(404).json({ message: "Trip not found" });
+app.delete(
+  "/api/trips/:id",
+  authenticateToken,
+  async (req, res) => {
+    try {
+      const deletedTrip = await Trip.findByIdAndDelete(
+        req.params.id
+      );
+
+      if (!deletedTrip) {
+        return res.status(404).json({
+          message: "Trip not found",
+        });
+      }
+
+      res.json({
+        message: "Trip deleted successfully",
+      });
+    } catch (error) {
+      res.status(400).json({
+        message: error.message,
+      });
     }
-
-    res.json({ message: "Trip deleted successfully" });
-  } catch (error) {
-    res.status(400).json({ message: error.message });
   }
-});
-// Start server
+);
+
+// ==================== HTTP + WEBSOCKET SERVER ====================
+
 const PORT = process.env.PORT || 5000;
+const server = http.createServer(app);
 
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+const wss = new WebSocket.Server({
+  server,
+  maxPayload: 5 * 1024 * 1024,
 });
-const WebSocket = require("ws");
-
-const wss = new WebSocket.Server({ port: 8081 });
-
-
 
 wss.on("connection", (ws) => {
   console.log("WebSocket client connected");
@@ -374,11 +413,17 @@ wss.on("connection", (ws) => {
         time: new Date().toISOString(),
       };
 
-      if (data.type === "image" && typeof data.image === "string") {
+      if (
+        data.type === "image" &&
+        typeof data.image === "string"
+      ) {
         payload.image = data.image;
       }
 
-      if (data.type === "video" && typeof data.video === "string") {
+      if (
+        data.type === "video" &&
+        typeof data.video === "string"
+      ) {
         payload.video = data.video;
       }
 
@@ -399,7 +444,10 @@ wss.on("connection", (ws) => {
 
       console.log(`${payload.type} update broadcast`);
     } catch (error) {
-      console.log("Invalid WebSocket message:", error.message);
+      console.log(
+        "Invalid WebSocket message:",
+        error.message
+      );
     }
   });
 
@@ -408,7 +456,8 @@ wss.on("connection", (ws) => {
   });
 });
 
-console.log("WebSocket server running on ws://localhost:8081");
+// ==================== START SERVER ====================
 
-
-console.log("WebSocket server running on ws://localhost:8081");
+server.listen(PORT, () => {
+  console.log(`VOYARA server running on port ${PORT}`);
+});
