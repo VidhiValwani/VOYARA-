@@ -30,7 +30,7 @@ function RealTimeNotifications() {
     "Traveller";
 
   useEffect(() => {
-    const socket = new WebSocket("ws://localhost:8081");
+    const socket = new WebSocket("wss://voyara-backend-bvcf.onrender.com");
     socketRef.current = socket;
 
     socket.onopen = () => setStatus("Connected");

@@ -150,7 +150,7 @@ const handleConfirmBooking = async () => {
   if (bookingConfirmed) return;
 
   try {
-    const response = await fetch("http://localhost:5000/api/trips", {
+    const response = await fetch("https://voyara-backend-bvcf.onrender.com/api/trips", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
