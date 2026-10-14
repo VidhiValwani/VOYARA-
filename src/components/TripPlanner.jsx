@@ -150,11 +150,16 @@ const handleConfirmBooking = async () => {
   if (bookingConfirmed) return;
 
   try {
-    const response = await fetch("https://voyara-backend-bvcf.onrender.com/api/trips", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
+    const token = localStorage.getItem("token");
+
+const response = await fetch(
+  "https://voyara-backend-bvcf.onrender.com/api/trips",
+  {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
       body: JSON.stringify({
         destination,
         startDate,
